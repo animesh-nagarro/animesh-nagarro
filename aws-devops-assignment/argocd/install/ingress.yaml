@@ -1,0 +1,9 @@
+server:
+  service:
+    type: LoadBalancer
+  ingress:
+    enabled: true
+    ingressClassName: alb
+    hosts:
+      - argocd.demo.local
+    tls: []

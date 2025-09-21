@@ -1,0 +1,37 @@
+image:
+  web:
+    repository: <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com/demo-web
+    tag: latest
+  api:
+    repository: <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com/demo-api
+    tag: latest
+
+replicaCount:
+  web: 1
+  api: 1
+
+resources:
+  web:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  api:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+pvc:
+  name: api-data
+  size: 5Gi
+  storageClassName: efs-sc # AWS EFS CSI driver
+
+ingress:
+  enabled: true
+  hostname: demo.local
+  tls: false
